@@ -1,34 +1,37 @@
 package snakegame;
 
+import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import javax.swing.JPanel;
-
-public class GamePanel extends JPanel implements KeyListener {
+public class GameCanvas extends Canvas implements KeyListener {
 	
 	GameSpace gamespace;
 	
-	public GamePanel(GameSpace g) {
+	public GameCanvas(GameSpace g) {
 		super();
 		gamespace = g;
-		this.setDoubleBuffered(true);
 		this.addKeyListener(this);
 	}
 	
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		g.setColor(getBackground());
+	private void addKeyListener(GameCanvas gameCanvas) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void render(Graphics2D g) {
+		g.setColor(this.getBackground());
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		for (int i = 0; i < gamespace.getGameSpaceWidth(); i++) {
 			for (int j = 0; j < gamespace.getGameSpaceHeight(); j++) {
 				Point tile = new Point(i,j);
 				if (gamespace.getTileContents(tile) == null) {
-					g.setColor(getBackground());
+					g.setColor(this.getBackground());
 //					g.fillRect(10*i, 10*j, 10, 10);
 				} else {
 					if (gamespace.getTileContents(tile).isObstruction()) {
