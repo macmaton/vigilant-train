@@ -18,11 +18,18 @@ public class Game {
 
 	public static void main(String[] args) throws InterruptedException {
 		
-		GameSpace gamespace = new GameSpace(20,30);
+		GameSpace gamespace = new GameSpace(20,20);
 		
 		JFrame frame = new JFrame("Snake Game");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setIgnoreRepaint(true);
+		
+		JLabel snakeLength = new JLabel("Current Snake Length: " + gamespace.getSnake().getLength());
+		frame.add(snakeLength);
+		JLabel maxSnakeLength = new JLabel("Maximum Snake Length: " + gamespace.getSnake().getMaxLength());
+		frame.add(maxSnakeLength);
+		JLabel numPoisons = new JLabel("Number of Poisons: " + gamespace.getNumPoisons());
+		frame.add(numPoisons);
 		
 		GameCanvas canvas = new GameCanvas(gamespace);
 		canvas.setPreferredSize(new Dimension(10*gamespace.getGameSpaceWidth(), 10*gamespace.getGameSpaceHeight()));
@@ -52,12 +59,12 @@ public class Game {
 //		Variable update time version
 		long lastUpdateTime = System.nanoTime();
 		long delta;
-		long maxDelta = 5000000000L;
+		long maxDelta = 6000000000L;
 		long smoothing = 0;
 		
 		while (true)
 		{
-			delta = 50000000 + (maxDelta/(10+gamespace.snake.getSpeed()));
+			delta = 10000000 + (maxDelta/(10+(2*gamespace.getSnake().getSpeed())));
 			long now = System.nanoTime();
 			long actualDelta = (now-lastUpdateTime) + smoothing; 
 			if (actualDelta > delta) {
@@ -86,22 +93,5 @@ public class Game {
 			
 			Thread.sleep(5);
 		}
-		
-////		Variable render time version
-//		long lastLoop = System.nanoTime();
-//		long delta = 0;
-//		long timePerUpdate = 5000000000L;
-//		boolean running = true;
-//		
-//		while (running) {
-//			long current = System.nanoTime();
-//			long elapsed = current-lastLoop;
-//			delta += elapsed;
-//			
-//			while (delta >= timePerUpdate) {
-//				gamespace.updateGameSpace();
-//				delta -= timePerUpdate;
-//			}
-//		}
 	}	
 }

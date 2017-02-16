@@ -7,6 +7,7 @@ public class Snake {
 	private SnakeSegment tail;
 	private Point direction;
 	private int length;
+	private int maxLength;
 	private int speed;
 	
 	public Snake(int headX, int headY, Point direction) {
@@ -14,6 +15,7 @@ public class Snake {
 		tail = new SnakeSegment(headX-direction.x, headY-direction.y, head);
 		this.direction = direction;
 		length = 2;
+		maxLength = length;
 		speed = 1;
 	}
 	
@@ -43,6 +45,9 @@ public class Snake {
 	
 	public void growSnake() {
 		length++;
+		if (length > maxLength) {
+			maxLength++;
+		}
 	}
 	
 	public void shrinkSnake() {
@@ -51,6 +56,10 @@ public class Snake {
 	
 	public int getLength() {
 		return length;
+	}
+	
+	public int getMaxLength() {
+		return maxLength;
 	}
 	
 	public int getSpeed() {

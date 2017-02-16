@@ -36,6 +36,9 @@ public class GameCanvas extends Canvas implements KeyListener {
 						if (gamespace.getTileContents(tile).isEdible()) {
 							g.setColor(Color.GREEN);
 							g.fillOval(10*i, 10*j, 10, 10);
+						} else {
+							g.setColor(Color.RED);
+							g.fillOval(10*i, 10*j, 10, 10);
 						}
 					}
 				}
