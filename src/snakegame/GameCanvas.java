@@ -19,11 +19,6 @@ public class GameCanvas extends Canvas implements KeyListener {
 		this.addKeyListener(this);
 	}
 	
-	private void addKeyListener(GameCanvas gameCanvas) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	public void render(Graphics2D g) {
 		g.setColor(this.getBackground());
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());

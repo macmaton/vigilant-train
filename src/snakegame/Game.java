@@ -24,26 +24,19 @@ public class Game {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setIgnoreRepaint(true);
 		
-//		GamePanel panel = new GamePanel(gamespace);
-//		panel.setPreferredSize(new Dimension(10*gamespace.getGameSpaceWidth(), 10*gamespace.getGameSpaceHeight()));
-//		panel.setBackground(Color.WHITE);
-//		panel.setIgnoreRepaint(true);
-//		
-//		frame.add(panel);
-		
 		GameCanvas canvas = new GameCanvas(gamespace);
 		canvas.setPreferredSize(new Dimension(10*gamespace.getGameSpaceWidth(), 10*gamespace.getGameSpaceHeight()));
 		canvas.setIgnoreRepaint(true);
 		canvas.setBackground(Color.WHITE);
+		canvas.setFocusable(true);
 		frame.add(canvas);
 		
 		frame.pack();
 		frame.setLayout(null);
 		frame.setVisible(true);
 		
-//		panel.requestFocusInWindow();
 		canvas.requestFocusInWindow();
-		
+
 		canvas.createBufferStrategy(2);
 		BufferStrategy buffer = canvas.getBufferStrategy();
 		
